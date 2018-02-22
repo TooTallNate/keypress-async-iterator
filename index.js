@@ -18,10 +18,7 @@ function createKeypressIterator(stream) {
 
   async function next() {
     if (keys.length === 0) {
-      await Promise.race([
-        once(stream, 'keypress'),
-        endPromise
-      ]);
+      await Promise.race([once(stream, 'keypress'), endPromise]);
     }
     return { done: ended && keys.length === 1, value: keys.shift() };
   }
